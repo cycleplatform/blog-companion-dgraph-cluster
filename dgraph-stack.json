@@ -1,0 +1,550 @@
+{
+  "version": "1.0",
+  "about": {
+    "version": "",
+    "description": "Dgraph Cluster"
+  },
+  "services": null,
+  "scoped_variables": [
+    {
+      "identifier": "alpha-1",
+      "scope": {
+        "containers": {
+          "global": false,
+          "ids": [],
+          "identifiers": ["alpha-1"]
+        }
+      },
+      "access": {
+        "env_variable": null,
+        "internal_api": null,
+        "file": {
+          "path": "/etc/dgraph/config.json",
+          "decode": false
+        }
+      },
+      "source": {
+        "type": "raw",
+        "details": {
+          "value": "{\n  \"my\": \"alpha-1:7080\",\n  \"zero\": \"zero-1:5080,zero-2:5080,zero-3:5080\",\n  \"postings\": \"/dgraph/p\",\n  \"wal\": \"/dgraph/w\",\n  \"bindall\": true,\n  \"security\": {\n    \"whitelist\": \"::/0\"\n  }\n}\n",
+          "secret": null,
+          "blob": true
+        }
+      }
+    },
+    {
+      "identifier": "alpha-2",
+      "scope": {
+        "containers": {
+          "global": false,
+          "ids": [],
+          "identifiers": ["alpha-2"]
+        }
+      },
+      "access": {
+        "env_variable": null,
+        "internal_api": null,
+        "file": {
+          "path": "/etc/dgraph/config.json",
+          "decode": false
+        }
+      },
+      "source": {
+        "type": "raw",
+        "details": {
+          "value": "{\n  \"my\": \"alpha-2:7080\",\n  \"zero\": \"zero-1:5080,zero-2:5080,zero-3:5080\",\n  \"postings\": \"/dgraph/p\",\n  \"wal\": \"/dgraph/w\",\n  \"bindall\": true,\n  \"security\": {\n    \"whitelist\": \"::/0\"\n  }\n}",
+          "secret": null,
+          "blob": true
+        }
+      }
+    },
+    {
+      "identifier": "alpha-3",
+      "scope": {
+        "containers": {
+          "global": false,
+          "ids": [],
+          "identifiers": ["alpha-3"]
+        }
+      },
+      "access": {
+        "env_variable": null,
+        "internal_api": null,
+        "file": {
+          "path": "/etc/dgraph/config.json",
+          "decode": false
+        }
+      },
+      "source": {
+        "type": "raw",
+        "details": {
+          "value": "{\n  \"my\": \"alpha-3:7080\",\n  \"zero\": \"zero-1:5080,zero-2:5080,zero-3:5080\",\n  \"postings\": \"/dgraph/p\",\n  \"wal\": \"/dgraph/w\",\n  \"bindall\": true,\n  \"security\": {\n    \"whitelist\": \"::/0\"\n  }\n}",
+          "secret": null,
+          "blob": true
+        }
+      }
+    },
+    {
+      "identifier": "zero-1",
+      "scope": {
+        "containers": {
+          "global": false,
+          "ids": [],
+          "identifiers": ["zero-1"]
+        }
+      },
+      "access": {
+        "env_variable": null,
+        "internal_api": null,
+        "file": {
+          "path": "/etc/dgraph/config.json",
+          "decode": false
+        }
+      },
+      "source": {
+        "type": "raw",
+        "details": {
+          "value": "{\n  \"my\": \"zero-1:5080\",\n  \"raft\": \"idx=1\",\n  \"wal\": \"/dgraph/w\",\n  \"replicas\": 3,\n  \"telemetry\": \"reports=false\",\n  \"bindall\": true\n}",
+          "secret": null,
+          "blob": true
+        }
+      }
+    },
+    {
+      "identifier": "zero-2",
+      "scope": {
+        "containers": {
+          "global": false,
+          "ids": [],
+          "identifiers": ["zero-2"]
+        }
+      },
+      "access": {
+        "env_variable": null,
+        "internal_api": null,
+        "file": {
+          "path": "/etc/dgraph/config.json",
+          "decode": false
+        }
+      },
+      "source": {
+        "type": "raw",
+        "details": {
+          "value": "{\n  \"my\": \"zero-2:5080\",\n  \"raft\": \"idx=2\",\n  \"wal\": \"/dgraph/w\",\n  \"peer\": \"zero-1:5080\",\n  \"replicas\": 3,\n  \"telemetry\": \"reports=false\",\n  \"bindall\": true\n}",
+          "secret": null,
+          "blob": true
+        }
+      }
+    },
+    {
+      "identifier": "zero-3",
+      "scope": {
+        "containers": {
+          "global": false,
+          "ids": [],
+          "identifiers": ["zero-3"]
+        }
+      },
+      "access": {
+        "env_variable": null,
+        "internal_api": null,
+        "file": {
+          "path": "/etc/dgraph/config.json",
+          "decode": false
+        }
+      },
+      "source": {
+        "type": "raw",
+        "details": {
+          "value": "{\n  \"my\": \"zero-3:5080\",\n  \"raft\": \"idx=3\",\n  \"wal\": \"/dgraph/w\",\n  \"peer\": \"zero-1:5080\",\n  \"replicas\": 3,\n  \"telemetry\": \"reports=false\",\n  \"bindall\": true\n}",
+          "secret": null,
+          "blob": true
+        }
+      }
+    }
+  ],
+  "containers": {
+    "alpha-1": {
+      "name": "alpha-1",
+      "image": {
+        "name": "dgraph/dgraph:v25.0.0",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": null,
+            "target": "dgraph/dgraph:v25.0.0"
+          }
+        }
+      },
+      "stateful": true,
+      "config": {
+        "network": {
+          "public": "egress-only",
+          "hostname": "alpha-1"
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "runtime": {
+          "command": {
+            "path": "dgraph",
+            "args": "alpha --config /etc/dgraph/config.json"
+          },
+          "seccomp": {
+            "disable": false,
+            "rules": null
+          },
+          "host": {
+            "expose_proc": null,
+            "expose_cgroups": null,
+            "power_management": null
+          },
+          "rootfs": {
+            "readonly": false
+          }
+        },
+        "integrations": {}
+      },
+      "volumes": [
+        {
+          "local": {
+            "max_size": "5G"
+          },
+          "destination": "/dgraph",
+          "read_only": false
+        }
+      ]
+    },
+    "alpha-2": {
+      "name": "alpha-2",
+      "image": {
+        "name": "dgraph/dgraph:v25.0.0",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": null,
+            "target": "dgraph/dgraph:v25.0.0"
+          }
+        }
+      },
+      "stateful": true,
+      "config": {
+        "network": {
+          "public": "egress-only",
+          "hostname": "alpha-2"
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "runtime": {
+          "command": {
+            "path": "dgraph",
+            "args": "alpha --config /etc/dgraph/config.json"
+          },
+          "seccomp": {
+            "disable": false,
+            "rules": null
+          },
+          "host": {
+            "expose_proc": null,
+            "expose_cgroups": null,
+            "power_management": null
+          },
+          "rootfs": {
+            "readonly": false
+          }
+        },
+        "integrations": {}
+      },
+      "volumes": [
+        {
+          "local": {
+            "max_size": "5G"
+          },
+          "destination": "/dgraph",
+          "read_only": false
+        }
+      ]
+    },
+    "alpha-3": {
+      "name": "alpha-3",
+      "image": {
+        "name": "dgraph/dgraph:v25.0.0",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": null,
+            "target": "dgraph/dgraph:v25.0.0"
+          }
+        }
+      },
+      "stateful": true,
+      "config": {
+        "network": {
+          "public": "egress-only",
+          "hostname": "alpha-3"
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "runtime": {
+          "command": {
+            "path": "dgraph",
+            "args": "alpha --config /etc/dgraph/config.json"
+          },
+          "seccomp": {
+            "disable": false,
+            "rules": null
+          },
+          "host": {
+            "expose_proc": null,
+            "expose_cgroups": null,
+            "power_management": null
+          },
+          "rootfs": {
+            "readonly": false
+          }
+        },
+        "integrations": {}
+      },
+      "volumes": [
+        {
+          "local": {
+            "max_size": "5G"
+          },
+          "destination": "/dgraph",
+          "read_only": false
+        }
+      ]
+    },
+    "cli": {
+      "name": "cli",
+      "image": {
+        "name": "dgraph/dgraph:v25.0.0",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": null,
+            "target": "dgraph/dgraph:v25.0.0"
+          }
+        }
+      },
+      "stateful": false,
+      "config": {
+        "network": {
+          "public": "egress-only",
+          "hostname": "cli"
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "runtime": {
+          "command": {
+            "path": "/bin/sh"
+          },
+          "seccomp": {
+            "disable": false,
+            "rules": null
+          },
+          "host": {
+            "expose_proc": null,
+            "expose_cgroups": null,
+            "power_management": null
+          },
+          "rootfs": {
+            "readonly": false
+          }
+        },
+        "integrations": {}
+      }
+    },
+    "zero-1": {
+      "name": "zero-1",
+      "image": {
+        "name": "dgraph/dgraph:v25.0.0",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": null,
+            "target": "dgraph/dgraph:v25.0.0"
+          }
+        }
+      },
+      "stateful": true,
+      "config": {
+        "network": {
+          "public": "egress-only",
+          "hostname": "zero-1"
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "runtime": {
+          "command": {
+            "path": "dgraph",
+            "args": "zero --config /etc/dgraph/config.json"
+          },
+          "seccomp": {
+            "disable": false,
+            "rules": null
+          },
+          "host": {
+            "expose_proc": null,
+            "expose_cgroups": null,
+            "power_management": null
+          },
+          "rootfs": {
+            "readonly": false
+          }
+        },
+        "integrations": {}
+      },
+      "volumes": [
+        {
+          "local": {
+            "max_size": "5G"
+          },
+          "destination": "/dgraph",
+          "read_only": false
+        }
+      ]
+    },
+    "zero-2": {
+      "name": "zero-2",
+      "image": {
+        "name": "dgraph/dgraph:v25.0.0",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": null,
+            "target": "dgraph/dgraph:v25.0.0"
+          }
+        }
+      },
+      "stateful": true,
+      "config": {
+        "network": {
+          "public": "egress-only",
+          "hostname": "zero-2"
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "runtime": {
+          "command": {
+            "path": "dgraph",
+            "args": "zero --config /etc/dgraph/config.json"
+          },
+          "seccomp": {
+            "disable": false,
+            "rules": null
+          },
+          "host": {
+            "expose_proc": null,
+            "expose_cgroups": null,
+            "power_management": null
+          },
+          "rootfs": {
+            "readonly": false
+          }
+        },
+        "integrations": {}
+      },
+      "volumes": [
+        {
+          "local": {
+            "max_size": "5G"
+          },
+          "destination": "/dgraph",
+          "read_only": false
+        }
+      ]
+    },
+    "zero-3": {
+      "name": "zero-3",
+      "image": {
+        "name": "dgraph/dgraph:v25.0.0",
+        "origin": {
+          "type": "docker-hub",
+          "details": {
+            "existing": null,
+            "target": "dgraph/dgraph:v25.0.0"
+          }
+        }
+      },
+      "stateful": true,
+      "config": {
+        "network": {
+          "public": "egress-only",
+          "hostname": "zero-3"
+        },
+        "deploy": {
+          "instances": 1,
+          "constraints": {
+            "node": {
+              "tags": {}
+            }
+          }
+        },
+        "runtime": {
+          "command": {
+            "path": "dgraph",
+            "args": "zero --config /etc/dgraph/config.json"
+          },
+          "seccomp": {
+            "disable": false,
+            "rules": null
+          },
+          "host": {
+            "expose_proc": null,
+            "expose_cgroups": null,
+            "power_management": null
+          },
+          "rootfs": {
+            "readonly": false
+          }
+        },
+        "integrations": {}
+      },
+      "volumes": [
+        {
+          "local": {
+            "max_size": "5G"
+          },
+          "destination": "/dgraph",
+          "read_only": false
+        }
+      ]
+    }
+  }
+}
